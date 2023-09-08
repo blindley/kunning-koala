@@ -1,27 +1,30 @@
-import { AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
 
-const SignIn = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
 
-  const handleSubmit = async (e, faulty = false) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg(null);
 
-    const auth = getAuth();
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      setErrorMsg(error.message);
+    if (password !== passwordConfirm) {
+      setErrorMsg("passwords do not match");
+    } else {
+      try {
+        await createUserWithEmailAndPassword(getAuth(), email, password);
+      } catch (error) {
+        setErrorMsg(error.message);
+      }
     }
   };
 
   return (
     <div>
-      <h2>Sign In</h2>
+      <h2>Sign Up</h2>
       {errorMsg && <p>{errorMsg}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email: </label>
@@ -44,10 +47,20 @@ const SignIn = () => {
         />
         <br />
 
-        <button type="submit">Sign In</button>
+        <label htmlFor="passwordConfirm">Password Confirm: </label>
+        <input
+          type="password"
+          name="passwordConfirm"
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          required
+        />
+        <br />
+
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
 };
 
-export default SignIn;
+export default SignUp;

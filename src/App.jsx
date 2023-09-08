@@ -3,6 +3,7 @@ import { createContext } from "react";
 import SignIn from "./SignIn";
 import "./firebaseInit"; // only import to run initialization, no items to use
 import { getAuth, onAuthStateChanged, signOut as fbSignOut } from "firebase/auth";
+import SignUp from "./SignUp";
 
 export const UserContext = createContext(null);
 
@@ -37,7 +38,11 @@ function App() {
             <button onClick={signOut}>Sign Out</button>
           </div>
         ) : (
-          <SignIn></SignIn>
+          <div>
+            <SignIn />
+            <hr />
+            <SignUp />
+          </div>
         )}
       </UserContext.Provider>
     </div>
