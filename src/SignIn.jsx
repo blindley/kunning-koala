@@ -1,10 +1,6 @@
-import { useContext, useState } from "react";
-import { UserContext } from "./App";
 import { AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
-  const { user, setUser } = useContext(UserContext);
-
   const handleSubmit = async (e, faulty = false) => {
     e.preventDefault();
 
@@ -13,8 +9,7 @@ const SignIn = () => {
     const password = faulty ? "x" : "testpassword";
 
     try {
-      const cred = await signInWithEmailAndPassword(auth, email, password);
-      console.log(cred.user);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
         console.log("Error: invalid password");
