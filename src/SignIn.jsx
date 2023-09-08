@@ -6,11 +6,13 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e, faulty = false) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const SignIn = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
     } catch (error) {
       setErrorMsg(error.message);
     }
@@ -29,7 +32,16 @@ const SignIn = () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
 
-    await signInWithPopup(auth, provider);
+    try {
+      await signInWithPopup(auth, provider);
+      navigate("/");
+    } catch (error) {
+      const codesToIgnore = [AuthErrorCodes.POPUP_CLOSED_BY_USER];
+
+      if (!codesToIgnore.includes(error.code)) {
+        setErrorMsg(error.message);
+      }
+    }
   };
 
   return (
