@@ -23,6 +23,7 @@ const Header = () => {
   return (
     <div>
       {user ? <h1>Hello, {user.email}</h1> : <h1>Hello, Guest</h1>}
+      <Link to="/">Home</Link>
       <hr />
     </div>
   );
