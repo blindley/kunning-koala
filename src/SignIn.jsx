@@ -1,4 +1,10 @@
-import { AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  AuthErrorCodes,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { useState } from "react";
 
 const SignIn = () => {
@@ -17,6 +23,13 @@ const SignIn = () => {
     } catch (error) {
       setErrorMsg(error.message);
     }
+  };
+
+  const googleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+
+    await signInWithPopup(auth, provider);
   };
 
   return (
@@ -46,6 +59,8 @@ const SignIn = () => {
 
         <button type="submit">Sign In</button>
       </form>
+      <br />
+      <button onClick={googleSignIn}>Sign In With Google</button>
     </div>
   );
 };
