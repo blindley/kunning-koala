@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SignInWithGoogle } from "./SignInWithGoogle";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -62,6 +63,8 @@ const SignUp = () => {
 
         <button type="submit">Sign Up</button>
       </form>
+      <br />
+      <SignInWithGoogle />
     </div>
   );
 };

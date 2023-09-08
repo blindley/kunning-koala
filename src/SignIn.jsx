@@ -1,12 +1,7 @@
-import {
-  AuthErrorCodes,
-  GoogleAuthProvider,
-  getAuth,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SignInWithGoogle } from "./SignInWithGoogle";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -25,22 +20,6 @@ const SignIn = () => {
       navigate("/");
     } catch (error) {
       setErrorMsg(error.message);
-    }
-  };
-
-  const googleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth();
-
-    try {
-      await signInWithPopup(auth, provider);
-      navigate("/");
-    } catch (error) {
-      const codesToIgnore = [AuthErrorCodes.POPUP_CLOSED_BY_USER];
-
-      if (!codesToIgnore.includes(error.code)) {
-        setErrorMsg(error.message);
-      }
     }
   };
 
@@ -72,7 +51,7 @@ const SignIn = () => {
         <button type="submit">Sign In</button>
       </form>
       <br />
-      <button onClick={googleSignIn}>Sign In With Google</button>
+      <SignInWithGoogle />
     </div>
   );
 };
