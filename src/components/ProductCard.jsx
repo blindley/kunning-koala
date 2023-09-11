@@ -7,7 +7,7 @@ const getProduct = (productId) => {
   const colorIndex = productId % colors.length;
   const color = colors[colorIndex];
   const imageFile = "/dummy-data/alphabet/" + lowerLetter + "-" + color + ".png";
-  const productName = "The letter " + upperLetter + "(" + color + ")";
+  const productName = "The letter " + upperLetter + " (" + color + ")";
   const price = 10;
   return { productName, imageFile, price };
 };
@@ -19,11 +19,14 @@ const formatPrice = (price) => {
 export const ProductCard = ({ productId }) => {
   const { productName, imageFile, price } = getProduct(productId);
   return (
-    <div>
+    <div className="productCard">
       <img src={imageFile} />
-      <p>
-        {productName} - {formatPrice(price)}
-      </p>
+      <div className="productDescription">
+        <p>
+          <b>{productName}</b>
+        </p>
+        <p>{formatPrice(price)}</p>
+      </div>
     </div>
   );
 };
