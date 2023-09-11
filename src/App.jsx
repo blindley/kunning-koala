@@ -11,10 +11,11 @@ import {
 } from "react-router-dom";
 
 import "./firebaseInit"; // only import to run initialization, no items to use
-import Home from "./pages/Home";
+import Shop from "./pages/Shop";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Navbar from "./components/Navbar";
+import Cart from "./pages/Cart";
 
 export const UserContext = createContext(null);
 
@@ -32,10 +33,10 @@ function RootLayout() {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route path="" element={<Home />} />
+      <Route path="" element={<Shop />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
-      <Route path="cart" />
+      <Route path="cart" element={<Cart />} />
     </Route>
   )
 );
