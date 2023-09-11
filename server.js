@@ -17,6 +17,8 @@ app.use((req, res, next) => {
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "dist")));
 
+app.use("/dummy-data", express.static(path.join(__dirname, "dummy-data")));
+
 // All other requests return the index.html file
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));

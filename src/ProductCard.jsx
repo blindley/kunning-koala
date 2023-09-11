@@ -6,7 +6,7 @@ const getProduct = (productId) => {
   const lowerLetter = String.fromCharCode(upperIndex + 32);
   const colorIndex = productId % colors.length;
   const color = colors[colorIndex];
-  const imageFile = "dummy-data/alphabet/" + lowerLetter + "-" + color + ".png";
+  const imageFile = "/dummy-data/alphabet/" + lowerLetter + "-" + color + ".png";
   const productName = "The letter " + upperLetter + "(" + color + ")";
   const price = 10;
   return { productName, imageFile, price };
