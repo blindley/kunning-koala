@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { getAuth, signOut as fbSignOut } from "firebase/auth";
-import { UserContext } from "./App";
+import { UserContext } from "../App";
 import { Link } from "react-router-dom";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "../components/ProductCard";
 
 const Home = () => {
   const { user } = useContext(UserContext);

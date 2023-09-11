@@ -1,7 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SignInWithGoogle } from "./SignInWithGoogle";
+import { SignInWithGoogle } from "../components/SignInWithGoogle";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
