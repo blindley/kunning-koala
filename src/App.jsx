@@ -11,28 +11,18 @@ import {
 } from "react-router-dom";
 
 import "./firebaseInit"; // only import to run initialization, no items to use
-import Home from "./Home";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+import Shop from "./pages/Shop";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Navbar from "./components/Navbar";
+import Cart from "./pages/Cart";
 
 export const UserContext = createContext(null);
-
-const Header = () => {
-  const { user } = useContext(UserContext);
-
-  return (
-    <div>
-      {user ? <h1>Hello, {user.email}</h1> : <h1>Hello, Guest</h1>}
-      <Link to="/">Home</Link>
-      <hr />
-    </div>
-  );
-};
 
 function RootLayout() {
   return (
     <div className="root-layout">
-      <Header />
+      <Navbar />
       <main>
         <Outlet />
       </main>
@@ -43,9 +33,10 @@ function RootLayout() {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route path="" element={<Home />} />
+      <Route path="" element={<Shop />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
+      <Route path="cart" element={<Cart />} />
     </Route>
   )
 );
@@ -58,9 +49,11 @@ function App() {
   });
 
   return (
-    <UserContext.Provider value={{ user }}>
-      <RouterProvider router={router} />
-    </UserContext.Provider>
+    <div className="App">
+      <UserContext.Provider value={{ user }}>
+        <RouterProvider router={router} />
+      </UserContext.Provider>
+    </div>
   );
 }
 
