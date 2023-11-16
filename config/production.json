@@ -4,7 +4,14 @@
       "src": "/koala.png"
     },
     "headTags": {
-      "title": "Kunning Koala"
+      "title": "Kunning Koala",
+      "description": "Kunning Koala is a koala that is very kunning.",
+      "links": [
+        {
+          "rel": "icon",
+          "href": "/favicon.ico"
+        }
+      ]
     }
   }
 }
