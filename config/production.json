@@ -1,7 +1,7 @@
 {
   "themeConfig": {
     "logo": {
-      "src": "/koala.png"
+      "src": "/public/koala.webp"
     },
     "headTags": {
       "title": "Kunning Koala",
@@ -9,7 +9,7 @@
       "links": [
         {
           "rel": "icon",
-          "href": "/favicon.ico"
+          "href": "/public/favicon.ico"
         }
       ]
     }
