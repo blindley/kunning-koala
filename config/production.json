@@ -1,0 +1,10 @@
+{
+  "themeConfig": {
+    "logo": {
+      "src": "/koala.png"
+    },
+    "headTags": {
+      "title": "Kunning Koala"
+    }
+  }
+}
